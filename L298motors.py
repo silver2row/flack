@@ -1,33 +1,30 @@
 import Adafruit_BBIO.GPIO as GPIO
 import time
 
-EnA = "P9_21"
-ln1 = "P9_22"
-ln2 = "P9_12"
+Master_Pin =  "P9_21"
+ln1 =         "P9_22"
+ln2 =         "P9_12"
 
-print "Initialize"
+if __name__=="__main__":
 
-GPIO.setup("P9_21", GPIO.OUT)
-GPIO.setup("P9_22", GPIO.OUT)
-GPIO.setup("P9_12", GPIO.OUT)
+    GPIO.setup(Master_Pin, GPIO.OUT)
+    GPIO.output(Master_Pin, GPIO.LOW)
 
-while True:
+    GPIO.setup(ln1, GPIO.OUT)
+    GPIO.setup(ln2, GPIO.OUT)
 
-    for i in range(10):
-        EnA = GPIO.output("P9_21", GPIO.LOW)
-    for i in range(3):
-        ln1 = GPIO.output("P9_22", GPIO.HIGH)
-    for i in range(5):
-        ln2 = GPIO.output("P9_12", GPIO.HIGH)
-    for i in range(4):
-        ln1 = GPIO.output("P9_22", GPIO.LOW)
-    for i in range(10):
-        EnA = GPIO.output("P9_21", GPIO.LOW)
-        print "Go, Go Bananas!"
+    GPIO.output(Master_Pin, GPIO.HIGH)
+    GPIO.output(ln1, GPIO.HIGH)
+    GPIO.output(ln2, GPIO.LOW)
+    time.sleep(5)
 
-        try:
-		
-		except KeyboardInterrupt:
-		    print "I got it over w/!"
-			GPIO.cleanup()
-			quit()
+    GPIO.output(Master_Pin, GPIO.HIGH)
+    GPIO.output(ln1, GPIO.LOW)
+    GPIO.output(ln2, GPIO.HIGH)
+    time.sleep(5)
+    print "I love your body Larry!"
+
+    GPIO.output(Master_Pin, GPIO.LOW)
+
+    GPIO.output(Master_Pin, GPIO.LOW)
+    GPIO.cleanup()
