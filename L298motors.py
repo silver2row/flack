@@ -1,6 +1,5 @@
 import Adafruit_BBIO.GPIO as GPIO
 import time
-from time import sleep
 
 EnA = "P9_21"
 ln1 = "P9_22"
@@ -12,14 +11,10 @@ GPIO.setup("P9_21", GPIO.OUT)
 GPIO.setup("P9_22", GPIO.OUT)
 GPIO.setup("P9_12", GPIO.OUT)
 
-GPIO.output("P9_21", GPIO.LOW)
-GPIO.output("P9_22", GPIO.LOW)
-GPIO.output("P9_12", GPIO.LOW)
-
 while True:
 
     for i in range(10):
-        EnA = GPIO.output("P9_21", GPIO.HIGH)
+        EnA = GPIO.output("P9_21", GPIO.LOW)
     for i in range(3):
         ln1 = GPIO.output("P9_22", GPIO.HIGH)
     for i in range(5):
@@ -35,4 +30,4 @@ while True:
 		except KeyboardInterrupt:
 		    print "I got it over w/!"
 			GPIO.cleanup()
-			quit(sleep)
+			quit()
