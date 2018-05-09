@@ -11,7 +11,7 @@ GPIO.setup("P9_21", GPIO.OUT)
 GPIO.setup("P9_22", GPIO.OUT)
 GPIO.setup("P9_12", GPIO.OUT)
 
-if EnA != HIGH:
+if EnA != ln1:
     
     EnA = GPIO.output("P9_21", GPIO.LOW)
     ln1 = GPIO.output("P9_22", GPIO.HIGH)
