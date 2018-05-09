@@ -11,20 +11,30 @@ GPIO.setup("P9_21", GPIO.OUT)
 GPIO.setup("P9_22", GPIO.OUT)
 GPIO.setup("P9_12", GPIO.OUT)
 
-if EnA != GPIO.output("P9_21", GPIO.HIGH):
+if EnA != HIGH:
+    
+    EnA = GPIO.output("P9_21", GPIO.LOW)
     ln1 = GPIO.output("P9_22", GPIO.HIGH)
     ln2 = GPIO.output("P9_12", GPIO.LOW)
-    sleep(2)
+    sleep(8)
 
+    EnA = GPIO.output("P9_21", GPIO.HIGH)
     ln1 = GPIO.output("P9_22", GPIO.LOW)
     ln2 = GPIO.output("P9_12", GPIO.HIGH)
-    sleep(2)
+    sleep(8)
 
+    EnA = GPIO.output("P9_21", GPIO.LOW)
     ln1 = GPIO.output("P9_22", GPIO.LOW)
     ln2 = GPIO.output("P9_12", GPIO.LOW)
-    sleep(2)
+    sleep(8)
     print "I am here now!"
 
+    EnA = GPIO.output("P9_21", GPIO.HIGH)
+    ln1 = GPIO.output("P9_22", GPIO.HIGH)
+    ln2 = GPIO.output("P9_12", GPIO.LOW)
+    sleep(8)
+    print "Flunk-a-Dunk!"
+    
 else:
 
     for i in range(1, 9):
