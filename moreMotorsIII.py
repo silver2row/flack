@@ -1,32 +1,53 @@
 import Adafruit_BBIO.GPIO as GPIO
 from time import sleep
- 
+
 EnA = "P9_21"
-In1 = "P9_22"
-In2 = "P9_12"
- 
-for pin in EnA, In1, In2:
-    GPIO.setup( pin, GPIO.OUT )
- 
-def disable(): GPIO.output( EnA, GPIO.LOW )
-def enable(): GPIO.output( EnA, GPIO.HIGH )
- 
-def drive( level1, level2 ):
-    GPIO.output( In1, level1 )
-    GPIO.output( In2, level2 )
-    enable()
- 
-def stop():    drive( GPIO.LOW,  GPIO.LOW )
-def forward(): drive( GPIO.HIGH, GPIO.LOW )
-def reverse(): drive( GPIO.LOW,  GPIO.HIGH )
- 
-forward()
-sleep(1)
-stop()  # try disable() instead and compare
-sleep(1)
-reverse()
-sleep(1)
- 
-stop()
-sleep(1)
-disable()
+ln1 = "P9_22"
+ln2 = "P9_12"
+
+print "Initialize"
+
+GPIO.setup("P9_21", GPIO.OUT)
+GPIO.setup("P9_22", GPIO.OUT)
+GPIO.setup("P9_12", GPIO.OUT)
+
+if EnA != GPIO.output("P9_21", GPIO.HIGH):
+    ln1 = GPIO.output("P9_22", GPIO.HIGH)
+    ln2 = GPIO.output("P9_12", GPIO.LOW)
+    sleep(2)
+
+    ln1 = GPIO.output("P9_22", GPIO.LOW)
+    ln2 = GPIO.output("P9_12", GPIO.HIGH)
+    sleep(2)
+
+    ln1 = GPIO.output("P9_22", GPIO.LOW)
+    ln2 = GPIO.output("P9_12", GPIO.LOW)
+    sleep(2)
+    print "I am here now!"
+
+else:
+
+    for i in range(1, 9):
+        EnA = GPIO.output("P9_21", GPIO.HIGH)
+        ln1 = GPIO.output("P9_22", GPIO.LOW)
+        ln2 = GPIO.output("P9_12", GPIO.HIGH)
+
+        EnA = GPIO.output("P9_21", GPIO.HIGH)
+        ln1 = GPIO.output("P9_22", GPIO.HIGH)
+        ln2 = GPIO.output("P9_12", GPIO.LOW)
+        sleep(0.2)
+
+        EnA = GPIO.output("P9_21", GPIO.LOW)
+        ln1 = GPIO.output("P9_22", GPIO.HIGH)
+        ln2 = GPIO.output("P9_12", GPIO.HIGH)
+        sleep(0.2)
+        print "I am still almost there!"
+
+try:
+    EnA = GPIO.output("P9_21", GPIO.OUT)
+    print "Going to sleep now!"
+
+except(KeyboardInterrupt):
+        print "I got it over w/!"
+        GPIO.cleanup()
+        quit()
