@@ -50,7 +50,7 @@ while True:
     sleep(8)
     print "Heh?"
 	
-	GPIO.output(EnA, GPIO.HIGH)
+    GPIO.output(EnA, GPIO.HIGH)
     GPIO.output(EnB, GPIO.HIGH)
 
     GPIO.output(ln1, GPIO.HIGH)
