@@ -65,5 +65,3 @@ while True:
     GPIO.output(EnB, GPIO.LOW)
     GPIO.cleanup()
     quit()
-
-
