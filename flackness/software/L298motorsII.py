@@ -9,8 +9,10 @@ In2 = "P9_15"
 for fill in EnA, In1, In2:
     GPIO.setup(fill, GPIO.OUT)
 
-def disable(): GPIO.output(EnA, GPIO.LOW)
-def enable(): GPIO.output(EnA, GPIO.HIGH)
+def disable():
+    GPIO.output(EnA, GPIO.LOW)
+def enable():
+    GPIO.output(EnA, GPIO.HIGH)
 
 def drive(level1, level2):
     GPIO.output(In1, level1)
@@ -19,17 +21,17 @@ def drive(level1, level2):
 
 def stop():
     drive(GPIO.LOW,  GPIO.LOW)
-    time.sleep(2)
-def forward():
+    sleep(2)
+def forward(geaux):
     drive(GPIO.HIGH, GPIO.LOW)
-    time.sleep(9)
-def reverse():
+    sleep(9)
+def reverse(II):
     drive(GPIO.LOW,  GPIO.HIGH)
-    time.sleep(18)
+    sleep(18)
 
 stop()
-forward()
-reverse()
+forward(10)
+reverse(10)
 enable()
 disable()
 drive(1, 2)
